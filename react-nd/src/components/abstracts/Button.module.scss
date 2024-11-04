@@ -1,0 +1,23 @@
+.btn {
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  align-self: flex-start;
+  &:hover {
+    background-color: #84cc16;
+  }
+  &.btnPrimary {
+    background-color: #90d81d;
+    color: #fff;
+  }
+  &.btnSecondary {
+    background-color: #616161;
+    color: #fff;
+  }
+  &.btnFull {
+    background-color: #90d81d;
+    color: #fff;
+    width: 100%;
+  }
+}
