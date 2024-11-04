@@ -1,0 +1,25 @@
+.loginBlock {
+  display: flex;
+  align-items: center;
+}
+
+.loginText {
+  margin-right: 1rem;
+}
+
+.loginUser {
+  font-weight: bold;
+}
+
+// REPONSIVE
+@media (max-width: 768px) {
+  .loginText {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .loginText {
+    display: none;
+  }
+}
