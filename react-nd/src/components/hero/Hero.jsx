@@ -6,7 +6,7 @@ import { CategorySection } from "../categories/CategorySection";
 export const Hero = () => {
   return (
     <section className={styles.hero}>
-      <div className="styles.heroContent">
+      <div className={styles.heroContent}>
         <h1 className={styles.h1}>
           Find Home <span>Service/Repair</span> <br /> Near You
         </h1>
