@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-export const Button = (btnProps) => {
+export const Button = ({ variant = "btnPrimary", ...btnProps }) => {
   return (
     <button
-      className={`${styles.btn} ${styles[btnProps.variant]}`}
+      className={`${styles.btn} ${styles[variant]}`}
       onClick={btnProps.onClick}
       type={btnProps.type}
     >

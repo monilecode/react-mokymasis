@@ -87,7 +87,7 @@ export const LoginPage = () => {
             ""
           )}
           <div className={styles.btnContainer}>
-            <Button text="Login" variant="btnLogin" />
+            <Button text="Login" variant="btnFull" />
           </div>
         </div>
         <Link className={styles.plainText}>Don't have an account? Sign Up</Link>
