@@ -1,47 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Documentation</title>
-    <link rel="stylesheet" href="./main.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>API Documentation</h1>
-      <ul>
-        <li><b>GET /categories</b> - Gauna visas kategorijas.</li>
-        <li><b>POST /categories</b> - Sukuria naują kategoriją.</li>
-        <br />
-        <li><b>GET /services</b> - Gauna visas įmones.</li>
-        <li>
-          <b>GET /services/category/:category</b> - Gauna visas įmones,
-          priklausančias nurodytai kategorijai.
-        </li>
-        <li><b>GET /services/:id</b> - Gauna konkrečią įmonę pagal ID.</li>
-        <li>
-          <b>GET /services/:serviceId/bookings/date/:date</b> - Gauna visus
-          užsakymus konkrečiai įmonei nurodytą dieną.
-        </li>
-        <li>
-          <b>POST /services</b> - Prideda naują įmonę į sąrašą. Užtikrinti, kad
-          būtų pateikti visi būtini laukai.
-        </li>
-        <li>
-          <b>PUT /services/:id</b> - Atnaujina esamą įmonę. Patikrinti, ar įmonė
-          su nurodytu ID egzistuoja, prieš atnaujinant.
-        </li>
-        <br />
-        <li>
-          <b>GET /bookings/user/:email</b> - Gauna visus užsakymus, susijusius
-          su konkretaus vartotojo el. pašto adresu.
-        </li>
-        <li>
-          <b>POST /bookings</b> - Sukuria naują užsakymą. Užtikrinti, kad būtų
-          pateikti visi laukai.
-        </li>
-        <li><b>DELETE /bookings/:id</b> - Ištrina konkretų užsakymą.</li>
-      </ul>
-    </div>
-  </body>
-</html>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>API Documentation</title>
+<link rel="stylesheet" href="./main.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>API Documentation</h1>
+    <ul>
+      <li><b>GET /categories</b> - Retrieves all categories.</li>
+      <li><b>POST /categories</b> - Creates a new category.</li>
+      <br />
+      <li><b>GET /services</b> - Retrieves all companies.</li>
+      <li>
+        <b>GET /services/category/:category</b> - Retrieves all companies
+        belonging to the specified category.
+      </li>
+      <li><b>GET /services/:id</b> - Retrieves a specific company by ID.</li>
+      <li>
+        <b>GET /services/:serviceId/bookings/date/:date</b> - Retrieves all
+        bookings for a specific company on the specified date.
+      </li>
+      <li>
+        <b>POST /services</b> - Adds a new company to the list. Ensure that
+        all required fields are provided.
+      </li>
+      <li>
+        <b>PUT /services/:id</b> - Updates an existing company. Check if the
+        company with the specified ID exists before updating.
+      </li>
+      <br />
+      <li>
+        <b>GET /bookings/user/:email</b> - Retrieves all bookings associated
+        with a specific user's email address.
+      </li>
+      <li>
+        <b>POST /bookings</b> - Creates a new booking. Ensure that all fields
+        are provided.
+      </li>
+      <li><b>DELETE /bookings/:id</b> - Deletes a specific booking.</li>
+    </ul>
+  </div>
+</body>
