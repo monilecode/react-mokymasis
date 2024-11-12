@@ -5,7 +5,7 @@ const BookingRoutes = express.Router();
 
 BookingRoutes.get('/', getBookings);
 BookingRoutes.post('/', createBooking);
-BookingRoutes.get('/:userEmail', getBookingsByEmail);
+BookingRoutes.get('/user/:userEmail', getBookingsByEmail);
 BookingRoutes.delete('/:id', deleteBooking);
 
 module.exports = { BookingRoutes };
