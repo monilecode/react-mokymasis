@@ -90,7 +90,9 @@ export const LoginPage = () => {
             <Button text="Login" variant="btnFull" />
           </div>
         </div>
-        <Link className={styles.plainText}>Don't have an account? Sign Up</Link>
+        <Link className={styles.plainText} to={""}>
+          Don't have an account? Sign Up
+        </Link>
       </form>
     </div>
   );
