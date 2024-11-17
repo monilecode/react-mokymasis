@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CategorySection.module.scss";
 import { CategoryCard } from "./CategoryCard";
-import { categoryData } from "../../data/Data";
+import { categoryData } from "@data/Data";
 import { useParams } from "react-router-dom";
 
-export const CategorySection = ({ isVertical }) => {
-  const { category } = useParams();
-  const [activeCategory, setActiveCategory] = useState(category || null);
+type CategorySectionProps = {
+  isVertical: boolean;
+};
+
+export const CategorySection: React.FC<CategorySectionProps> = ({
+  isVertical,
+}) => {
+  const { category } = useParams<{ category?: string }>();
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    category || null
+  );
 
   useEffect(() => {
     if (category) {
@@ -14,7 +22,7 @@ export const CategorySection = ({ isVertical }) => {
     }
   }, [category]);
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
   };
 

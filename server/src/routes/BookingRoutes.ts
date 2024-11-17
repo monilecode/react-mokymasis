@@ -1,5 +1,5 @@
-const express = require('express');
-const { getBookings, createBooking, getBookingsByEmail, deleteBooking } = require('../controllers/BookingController');
+import express from 'express';
+import { getBookings, getBookingsByEmail, deleteBooking, createBooking } from '../controllers/BookingController';
 
 const BookingRoutes = express.Router();
 
@@ -8,4 +8,4 @@ BookingRoutes.post('/', createBooking);
 BookingRoutes.get('/user/:userEmail', getBookingsByEmail);
 BookingRoutes.delete('/:id', deleteBooking);
 
-module.exports = { BookingRoutes };
+export { BookingRoutes };

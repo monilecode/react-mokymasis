@@ -1,9 +1,17 @@
 import React from "react";
 import styles from "./ServiceSection.module.scss";
 import { ServiceCard } from "./ServiceCard";
-import { serviceData } from "../../data/Data";
+import { serviceData, Service } from "@data/Data";
 
-export const ServiceSection = ({ selectedCategory, filterServices }) => {
+type ServiceSectionProps = {
+  selectedCategory: string;
+  filterServices: boolean;
+};
+
+export const ServiceSection: React.FC<ServiceSectionProps> = ({
+  selectedCategory,
+  filterServices,
+}) => {
   const filteredServices = filterServices
     ? serviceData.filter(
         (service) =>
@@ -15,10 +23,11 @@ export const ServiceSection = ({ selectedCategory, filterServices }) => {
     <section className={styles.serviceSection}>
       <div className={styles.serviceContent}>
         {filteredServices.length > 0 ? (
-          filteredServices.map((item) => (
+          filteredServices.map((item: Service) => (
             <ServiceCard
               className={styles.card}
               key={item.id}
+              id={item.id}
               img={item.img}
               heading={item.heading}
               name={item.name}

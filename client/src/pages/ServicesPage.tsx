@@ -1,11 +1,15 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { CategorySection } from "../components/categories/CategorySection";
-import { ServiceSection } from "../components/services/ServiceSection";
+import { CategorySection } from "@components/categories/CategorySection";
+import { ServiceSection } from "@components/services/ServiceSection";
 import styles from "./ServicesPage.module.scss";
 
-export const ServicesPage = () => {
-  const { category } = useParams();
+type Params = {
+  category: string;
+};
+
+export const ServicesPage: React.FC = () => {
+  const { category } = useParams<Params>();
 
   return (
     <section

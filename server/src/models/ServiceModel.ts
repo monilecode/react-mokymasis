@@ -1,6 +1,15 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const ServiceSchema = new mongoose.Schema({
+interface IService extends mongoose.Document {
+  heading: string;
+  img: string;
+  name: string;
+  address: string;
+  categoryTag: string;
+  bookings: mongoose.Types.ObjectId[];
+}
+
+const ServiceSchema = new mongoose.Schema<IService>({
   heading: {
     type: String,
     required: true,
@@ -37,6 +46,6 @@ ServiceSchema.set('toJSON', {
   },
 });
 
-const ServiceModel = mongoose.model('Service', ServiceSchema);
+const ServiceModel = mongoose.model<IService>('Service', ServiceSchema);
 
-module.exports = { ServiceModel };
+export { ServiceModel };

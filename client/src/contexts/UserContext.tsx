@@ -1,11 +1,29 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
 
-export const UserContext = createContext();
+type User = {
+  email: string;
+};
 
-export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+type UserContextType = {
+  user: User | null;
+  login: (userInfo: User) => void;
+  logout: () => void;
+};
 
-  const login = (userInfo) => {
+const defaultContextValue: UserContextType = {
+  user: null,
+  login: () => {},
+  logout: () => {},
+};
+
+export const UserContext = createContext<UserContextType>(defaultContextValue);
+
+export const UserProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [user, setUser] = useState<User | null>(null);
+
+  const login = (userInfo: User) => {
     setUser(userInfo);
     localStorage.setItem("user", JSON.stringify(userInfo));
   };

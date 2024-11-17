@@ -1,12 +1,12 @@
-const express = require('express');
-const {
+import express from 'express';
+import {
   getServices,
   getServiceById,
   getServicesByCategory,
   createService,
   updateService,
   getServiceBookingsByDate,
-} = require('../controllers/ServiceController');
+} from '../controllers/ServiceController';
 
 const ServiceRoutes = express.Router();
 
@@ -17,4 +17,4 @@ ServiceRoutes.get('/:id', getServiceById);
 ServiceRoutes.put('/:id', updateService);
 ServiceRoutes.get('/:serviceId/bookings/date/:date', getServiceBookingsByDate);
 
-module.exports = { ServiceRoutes };
+export { ServiceRoutes };

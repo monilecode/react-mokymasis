@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import { Types } from 'mongoose';
 
-const expiresIn = process.env.JWT_EXPIRATION;
-const generateToken = (payload) => {
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
+const expiresIn = '90d';
+
+export const generateToken = (payload: { id: Types.ObjectId }) => {
+  const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn });
   return token;
 };
-
-module.exports = { generateToken };

@@ -1,14 +1,24 @@
 import React from "react";
 import styles from "./CategoryCard.module.scss";
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
+import { Routes } from "@routing/Routes";
 
-export const CategoryCard = (categoryProps) => {
+type CategoryCardProps = {
+  category: string;
+  icon: string;
+  alt: string;
+  isActive: boolean;
+  onClick: () => void;
+};
+
+export const CategoryCard: React.FC<CategoryCardProps> = (categoryProps) => {
   const { category } = categoryProps;
 
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/search/${category}`);
+    navigate(generatePath(Routes.SearchCategoryPage, { category }));
     categoryProps.onClick();
   };
 

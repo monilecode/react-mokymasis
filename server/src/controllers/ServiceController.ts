@@ -1,40 +1,50 @@
-const mongoose = require('mongoose');
-const { ServiceModel } = require('../models/ServiceModel');
-const { BookingModel } = require('../models/BookingModel');
+import mongoose from 'mongoose';
+import { Request, Response } from 'express';
+import { ServiceModel } from '../models/ServiceModel';
+import { BookingModel } from '../models/BookingModel';
 
-const getServices = async (req, res) => {
+export const getServices = async (req: Request, res: Response): Promise<void> => {
   try {
     const services = await ServiceModel.find().populate('bookings');
     res.json(services);
+    return;
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving services', error: error.message });
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: 'Error retrieving services', error: errorMessage });
+    return;
   }
 };
 
-const getServiceById = async (req, res) => {
+export const getServiceById = async (req: Request, res: Response): Promise<void> => {
   try {
     const service = await ServiceModel.findById(req.params.id).populate('bookings');
     if (service) {
       res.json(service);
+      return;
     } else {
       res.status(404).json({ message: 'Service not found' });
+      return;
     }
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving service', error: error.message });
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: 'Error retrieving service', error: errorMessage });
+    return;
   }
 };
 
-const getServicesByCategory = async (req, res) => {
+export const getServicesByCategory = async (req: Request, res: Response): Promise<void> => {
   try {
     const category = req.params.category;
     const servicesByCategory = await ServiceModel.find({ categoryTag: { $regex: new RegExp(category, 'i') } });
     res.json(servicesByCategory);
+    return;
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving services' });
+    return;
   }
 };
 
-const createService = async (req, res) => {
+export const createService = async (req: Request, res: Response): Promise<void> => {
   try {
     const newService = new ServiceModel({
       heading: req.body.heading,
@@ -49,26 +59,32 @@ const createService = async (req, res) => {
       message: 'Service added successfully',
       serviceId: newService._id,
     });
+    return;
   } catch (error) {
     res.status(500).json({ message: 'Error creating service' });
+    return;
   }
 };
 
-const updateService = async (req, res) => {
+export const updateService = async (req: Request, res: Response): Promise<void> => {
   try {
     const service = await ServiceModel.findById(req.params.id);
     if (!service) {
-      return res.status(404).json({ message: 'Service not found' });
+      res.status(404).json({ message: 'Service not found' });
+      return;
     }
 
     const updatedService = await ServiceModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updatedService);
+    return;
   } catch (error) {
-    res.status(500).json({ message: 'Error updating service', error: error.message });
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: 'Error updating service', error: errorMessage });
+    return;
   }
 };
 
-const getServiceBookingsByDate = async (req, res) => {
+export const getServiceBookingsByDate = async (req: Request, res: Response): Promise<void> => {
   try {
     const { serviceId, date } = req.params;
     const bookings = await BookingModel.find({
@@ -79,20 +95,15 @@ const getServiceBookingsByDate = async (req, res) => {
       .exec();
 
     if (!bookings.length) {
-      return res.status(404).json({ message: 'No bookings found for this service on the specified date' });
+      res.status(404).json({ message: 'No bookings found for this service on the specified date' });
+      return;
     }
 
     res.json(bookings);
+    return;
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving bookings', error: error.message });
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: 'Error retrieving bookings', error: errorMessage });
+    return;
   }
-};
-
-module.exports = {
-  getServices,
-  createService,
-  getServicesByCategory,
-  getServiceById,
-  updateService,
-  getServiceBookingsByDate,
 };

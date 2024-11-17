@@ -1,10 +1,23 @@
 import React from "react";
 import styles from "./ServiceCard.module.scss";
-import { Button } from "../abstracts/Button";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { Button } from "@components/abstracts/Button";
+import { useLocalStorage } from "@hooks/useLocalStorage";
 
-export const ServiceCard = (serviceProps) => {
-  const [favourites, setFavourites] = useLocalStorage("favourites", []);
+type ServiceCardProps = {
+  id: number;
+  img: string;
+  categoryTag: string;
+  heading: string;
+  name: string;
+  address: string;
+  className?: string;
+};
+
+export const ServiceCard: React.FC<ServiceCardProps> = (serviceProps) => {
+  const [favourites, setFavourites] = useLocalStorage<number[]>(
+    "favourites",
+    []
+  );
   const isFavourite = favourites.includes(serviceProps.id);
 
   const toggleFavourite = () => {
@@ -50,11 +63,7 @@ export const ServiceCard = (serviceProps) => {
             </g>
           </svg>
         </span>
-        <img
-          className={styles.img}
-          src={serviceProps.img}
-          alt={serviceProps.alt}
-        />
+        <img className={styles.img} src={serviceProps.img} />
       </div>
 
       <div className={styles.textBox}>

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../abstracts/Button";
+import { Button } from "@components/abstracts/Button";
+import { UserContext } from "@contexts/UserContext";
 import styles from "../abstracts/Button.module.scss";
 import stylesLogin from "./Login.module.scss";
-import { UserContext } from "../../contexts/UserContext";
 
-export const Login = () => {
+export const Login: React.FC = () => {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
 

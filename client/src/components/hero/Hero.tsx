@@ -1,7 +1,7 @@
 import React from "react";
 import { Search } from "./Search";
 import styles from "./Hero.module.scss";
-import { CategorySection } from "../categories/CategorySection";
+import { CategorySection } from "@components/categories/CategorySection";
 
 export const Hero = () => {
   return (
@@ -12,7 +12,7 @@ export const Hero = () => {
         </h1>
         <h3>Explore Best Home Service & Repair near you</h3>
         <Search />
-        <CategorySection />
+        <CategorySection isVertical={false} />
       </div>
     </section>
   );

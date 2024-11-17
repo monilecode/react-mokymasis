@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Topbar.module.scss";
 import { Login } from "./Login";
+import { Routes } from "@routing/Routes";
 
-export const Topbar = () => {
+const topbarLinksData = [
+  { to: Routes.HomePage, text: "Home" },
+  { to: Routes.ServicesPage, text: "Services" },
+  { to: Routes.AboutPage, text: "About Us" },
+];
+
+export const Topbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -25,27 +32,15 @@ export const Topbar = () => {
           />
         </Link>
         <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ""}`}>
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            onClick={closeMenu}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/services"
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            onClick={closeMenu}
-          >
-            Services
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? styles.active : "")}
-            onClick={closeMenu}
-          >
-            About Us
-          </NavLink>
+          {topbarLinksData.map(({ to, text }) => (
+            <NavLink
+              to={to}
+              className={({ isActive }) => (isActive ? styles.active : "")}
+              onClick={closeMenu}
+            >
+              {text}
+            </NavLink>
+          ))}
         </nav>
       </div>
       <Login />

@@ -1,7 +1,16 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose, { Types } from 'mongoose';
+import bcrypt from 'bcryptjs';
 
-const UserSchema = new mongoose.Schema(
+interface IUser extends mongoose.Document {
+  _id: Types.ObjectId;
+  name: string;
+  age?: number;
+  email: string;
+  password: string;
+  isCorrectPassword: (password: string) => Promise<boolean>;
+}
+
+const UserSchema = new mongoose.Schema<IUser>(
   {
     name: {
       type: String,
@@ -35,17 +44,17 @@ UserSchema.set('toJSON', {
   },
 });
 
-UserSchema.pre('save', async function (next) {
+UserSchema.pre<IUser>('save', async function (next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();
 });
 
-UserSchema.methods.isCorrectPassword = function (password) {
+UserSchema.methods.isCorrectPassword = async function (password: string): Promise<boolean> {
   return bcrypt.compare(password, this.password);
 };
 
-const UserModel = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model<IUser>('User', UserSchema);
 
-module.exports = { UserModel };
+export { UserModel };

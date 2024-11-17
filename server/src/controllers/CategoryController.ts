@@ -1,15 +1,18 @@
-const { CategoryModel } = require("../models/CategoryModel");
+import { CategoryModel } from '../models/CategoryModel';
+import { Request, Response } from 'express';
 
-const getCategories = async (req, res) => {
+const getCategories = async (req: Request, res: Response): Promise<void> => {
   try {
     const allCategories = await CategoryModel.find();
     res.json(allCategories);
+    return;
   } catch (error) {
-    res.status(500).json({ message: "Error retrieving categories" });
+    res.status(500).json({ message: 'Error retrieving categories' });
+    return;
   }
 };
 
-const createCategory = async (req, res) => {
+const createCategory = async (req: Request, res: Response): Promise<void> => {
   try {
     const newCategory = new CategoryModel({
       category: req.body.category,
@@ -19,15 +22,14 @@ const createCategory = async (req, res) => {
     await newCategory.save();
     res.json({
       success: true,
-      message: "Category added successfully",
+      message: 'Category added successfully',
       categoryId: newCategory._id,
     });
+    return;
   } catch (error) {
-    res.status(500).json({ message: "Error creating category" });
+    res.status(500).json({ message: 'Error creating category' });
+    return;
   }
 };
 
-module.exports = {
-  getCategories,
-  createCategory,
-};
+export { getCategories, createCategory };

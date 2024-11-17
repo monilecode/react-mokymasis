@@ -1,6 +1,16 @@
-const mongoose = require('mongoose');
+import mongoose, { Types } from 'mongoose';
 
-const BookingSchema = new mongoose.Schema({
+interface IBooking extends mongoose.Document {
+  businessId: Types.ObjectId;
+  date: Date;
+  time: string;
+  userEmail: string;
+  userName: string;
+  status: 'confirmed' | 'pending' | 'cancelled';
+  services: Types.ObjectId[];
+}
+
+const BookingSchema = new mongoose.Schema<IBooking>({
   services: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -12,10 +22,10 @@ const BookingSchema = new mongoose.Schema({
     type: String,
     required: [true, 'field is required.'],
     validate: {
-      validator: function (email) {
+      validator: function (email: string) {
         return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
       },
-      message: (props) => `${props.value} is not a valid email!`,
+      message: (props: { value: string }) => `${props.value} is not a valid email!`,
     },
   },
   userName: {
@@ -48,6 +58,6 @@ BookingSchema.set('toJSON', {
   },
 });
 
-const BookingModel = mongoose.model('Booking', BookingSchema);
+const BookingModel = mongoose.model<IBooking>('Booking', BookingSchema);
 
-module.exports = { BookingModel };
+export { BookingModel };

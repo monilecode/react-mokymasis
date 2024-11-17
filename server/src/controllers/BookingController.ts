@@ -1,26 +1,30 @@
-const mongoose = require('mongoose');
-const { BookingModel } = require('../models/BookingModel');
-const { ServiceModel } = require('../models/ServiceModel');
+import mongoose from 'mongoose';
+import { Request, Response } from 'express';
+import { BookingModel } from '../models/BookingModel';
+import { ServiceModel } from '../models/ServiceModel';
 
-const getBookings = async (req, res) => {
+export const getBookings = async (req: Request, res: Response): Promise<void> => {
   try {
     const bookings = await BookingModel.find().populate('services').exec();
 
     res.json(bookings);
+    return;
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving bookings' });
+    return;
   }
 };
 
-const createBooking = async (req, res) => {
+export const createBooking = async (req: Request, res: Response): Promise<void> => {
   try {
     const { userEmail, userName, services, status, date, time } = req.body;
 
-    const serviceIds = services.map((id) => new mongoose.Types.ObjectId(id));
+    const serviceIds = services.map((id: string) => new mongoose.Types.ObjectId(id));
 
     const foundServices = await ServiceModel.find({ _id: { $in: serviceIds } });
     if (foundServices.length !== serviceIds.length) {
-      return res.status(404).json({ message: 'One or more services not found' });
+      res.status(404).json({ message: 'One or more services not found' });
+      return;
     }
 
     const newBooking = new BookingModel({
@@ -35,7 +39,7 @@ const createBooking = async (req, res) => {
     await newBooking.save();
 
     for (const service of foundServices) {
-      service.bookings.push(newBooking._id);
+      service.bookings.push(newBooking._id as mongoose.Types.ObjectId);
       await service.save();
     }
 
@@ -44,39 +48,40 @@ const createBooking = async (req, res) => {
       message: 'Booking created successfully',
       bookingId: newBooking._id,
     });
+    return;
   } catch (error) {
-    console.error('Error creating booking:', error);
-    res.status(500).json({ message: 'Error creating booking', error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message: 'Error creating booking', error: errorMessage });
+    return;
   }
 };
 
-const getBookingsByEmail = async (req, res) => {
+export const getBookingsByEmail = async (req: Request, res: Response): Promise<void> => {
   try {
     const { userEmail } = req.params;
     const bookings = await BookingModel.find({ userEmail }).populate('services').exec();
 
     if (!bookings.length) {
-      return res.status(404).json({ message: 'No bookings found for this email' });
+      res.status(404).json({ message: 'No bookings found for this email' });
+      return;
     }
 
     res.json(bookings);
+    return;
   } catch (error) {
-    res.status(500).json({ message: 'Error retrieving bookings', error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ message: 'Error retrieving bookings', error: errorMessage });
+    return;
   }
 };
 
-const deleteBooking = async (req, res) => {
+export const deleteBooking = async (req: Request, res: Response): Promise<void> => {
   try {
     await BookingModel.findByIdAndDelete(req.params.id);
     res.json({ success: true, message: 'Booking deleted successfully' });
+    return;
   } catch (error) {
     res.status(500).json({ message: 'Error deleting booking' });
+    return;
   }
-};
-
-module.exports = {
-  getBookings,
-  createBooking,
-  getBookingsByEmail,
-  deleteBooking,
 };

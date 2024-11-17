@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.scss";
-import { UserContext } from "../contexts/UserContext";
-import { Button } from "../components/abstracts/Button";
+import { UserContext } from "@contexts/UserContext";
+import { Button } from "@components/abstracts/Button";
 
-export const LoginPage = () => {
+export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useContext(UserContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState({ email: "", password: "" });
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "email") {
       setEmail(value);
@@ -21,18 +21,18 @@ export const LoginPage = () => {
     setErrors({ ...errors, [name]: "" });
   };
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const validatePassword = (password) => {
+  const validatePassword = (password: string): boolean => {
     return password.length >= 6;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newErrors = {};
+    const newErrors: { email?: string; password?: string } = {};
 
     if (!email) {
       newErrors.email = "This input is required";
@@ -47,7 +47,7 @@ export const LoginPage = () => {
     }
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+      setErrors(newErrors as { email: string; password: string });
     } else {
       const user = { email, password };
       login(user);

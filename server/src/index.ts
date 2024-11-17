@@ -1,15 +1,17 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const morgan = require('morgan');
-require('dotenv').config();
-const cors = require('cors');
-const { connectToDb, PORT } = require('./db');
+import express from 'express';
+import path from 'path';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import { connectToDb, PORT } from './db';
 
-const { CategoryRoutes } = require('./routes/CategoryRoutes');
-const { ServiceRoutes } = require('./routes/ServiceRoutes');
-const { BookingRoutes } = require('./routes/BookingRoutes');
-const { AuthRoutes } = require('./routes/AuthRoutes');
+import { CategoryRoutes } from './routes/CategoryRoutes';
+import { ServiceRoutes } from './routes/ServiceRoutes';
+import { BookingRoutes } from './routes/BookingRoutes';
+import { AuthRoutes } from './routes/AuthRoutes';
+
+dotenv.config();
+const app = express();
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../public')));

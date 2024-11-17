@@ -1,6 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const CategorySchema = new mongoose.Schema({
+interface ICategory extends mongoose.Document {
+  category: string;
+  icon: string;
+  alt: string;
+}
+
+const CategorySchema = new mongoose.Schema<ICategory>({
   category: {
     type: String,
     required: true,
@@ -24,6 +30,6 @@ CategorySchema.set('toJSON', {
   },
 });
 
-const CategoryModel = mongoose.model('Category', CategorySchema);
+const CategoryModel = mongoose.model<ICategory>('Category', CategorySchema);
 
-module.exports = { CategoryModel };
+export { CategoryModel };

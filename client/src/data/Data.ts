@@ -1,3 +1,12 @@
+export type Service = {
+  id: number;
+  img: string;
+  categoryTag: string;
+  heading: string;
+  name: string;
+  address: string;
+};
+
 export const categoryData = [
   {
     id: 1,
@@ -37,7 +46,7 @@ export const categoryData = [
   },
 ];
 
-export const serviceData = [
+export const serviceData: Service[] = [
   {
     id: 1,
     heading: "House Cleaning",
@@ -66,6 +75,7 @@ export const serviceData = [
     id: 4,
     heading: "Washing Clothes",
     img: "/src/components/services/images/4.jpg",
+    name: "Žmogus Žmoginskas",
     address: "Trakų g. 19-88, Marijampolė",
     categoryTag: "Cleaning",
   },
