@@ -4,16 +4,19 @@
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
   align-self: flex-start;
-  &:hover {
-    background-color: #84cc16;
-  }
   &.btnPrimary {
     background-color: #90d81d;
     color: #fff;
+    &:hover {
+      background-color: #84cc16;
+    }
   }
   &.btnSecondary {
     background-color: #616161;
     color: #fff;
+    &:hover {
+      background-color: #4d4d4d;
+    }
   }
   &.btnFull {
     background-color: #90d81d;

@@ -16,13 +16,19 @@ export const Login: React.FC = () => {
           <p className={stylesLogin.loginText}>
             Hello, <span className={stylesLogin.loginUser}>{user.email} !</span>
           </p>
-          <Button className={styles.btn} onClick={logout} text="Logout" />
+          <Button
+            className={styles.btn}
+            onClick={logout}
+            text="Logout"
+            type={"button"}
+          />
         </div>
       ) : (
         <Button
           className={styles.btn}
           onClick={() => navigate("/login")}
           text="Login"
+          type={"button"}
         />
       )}
     </div>

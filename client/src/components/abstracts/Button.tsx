@@ -1,7 +1,18 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-export const Button = ({ variant = "btnPrimary", ...btnProps }) => {
+type ButtonProps = {
+  className?: string;
+  variant?: "btnPrimary" | "btnSecondary" | "btnFull";
+  text: string;
+  onClick?: () => void;
+  type: "button" | "submit" | "reset";
+};
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = "btnPrimary",
+  ...btnProps
+}) => {
   return (
     <button
       className={`${styles.btn} ${styles[variant]}`}

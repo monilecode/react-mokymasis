@@ -22,7 +22,7 @@ app.use((0, morgan_1.default)('dev'));
 app.use('/categories', CategoryRoutes_1.CategoryRoutes);
 app.use('/services', ServiceRoutes_1.ServiceRoutes);
 app.use('/bookings', BookingRoutes_1.BookingRoutes);
-app.use('/auth', AuthRoutes_1.AuthRoutes);
+app.use(AuthRoutes_1.AuthRoutes);
 (0, db_1.connectToDb)()
     .then(() => app.listen(db_1.PORT, () => console.log(`Server running on port ${process.env.PROTOCOL}://${process.env.HOST}:${db_1.PORT}`)))
     .catch((err) => console.error('Failed to connect to the database', err));

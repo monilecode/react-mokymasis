@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 app.use('/categories', CategoryRoutes);
 app.use('/services', ServiceRoutes);
 app.use('/bookings', BookingRoutes);
-app.use('/auth', AuthRoutes);
+app.use(AuthRoutes);
 
 connectToDb()
   .then(() =>
