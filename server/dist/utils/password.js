@@ -1,8 +1,13 @@
 "use strict";
-const jwt = require('jsonwebtoken');
-const expiresIn = process.env.JWT_EXPIRATION;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.generateToken = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const expiresIn = '90d';
 const generateToken = (payload) => {
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
+    const token = jsonwebtoken_1.default.sign(payload, process.env.JWT_SECRET, { expiresIn });
     return token;
 };
-module.exports = { generateToken };
+exports.generateToken = generateToken;

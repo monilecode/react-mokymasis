@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./LoginPage.module.scss";
+import styles from "./AuthPage.module.scss";
 import { UserContext } from "@contexts/UserContext";
 import { Button } from "@components/abstracts/Button";
 
@@ -56,36 +56,45 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <form className={styles.loginForm} onSubmit={handleSubmit} noValidate>
+    <div className={styles.authContainer}>
+      <form className={styles.authForm} onSubmit={handleSubmit} noValidate>
         <h1>Welcome</h1>
-        <div className={styles.loginInputsBlock}>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-            className={errors.email ? styles.errorInput : ""}
-          />
-          {errors.email ? (
-            <span className={styles.errorText}>{errors.email}</span>
-          ) : (
-            ""
-          )}
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Password"
-            className={errors.password ? styles.errorInput : ""}
-          />
-          {errors.password ? (
-            <span className={styles.errorText}>{errors.password}</span>
-          ) : (
-            ""
-          )}
+        <div className={styles.authInputsBlock}>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Email"
+              className={errors.email ? styles.errorInput : ""}
+            />
+            {errors.email ? (
+              <span className={styles.errorText}>{errors.email}</span>
+            ) : (
+              ""
+            )}
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+              className={errors.password ? styles.errorInput : ""}
+            />
+            {errors.password ? (
+              <span className={styles.errorText}>{errors.password}</span>
+            ) : (
+              ""
+            )}
+          </div>
+
           <div className={styles.btnContainer}>
             <Button text="Login" variant="btnFull" />
           </div>

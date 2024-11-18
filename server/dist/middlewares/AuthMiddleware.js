@@ -1,5 +1,10 @@
 "use strict";
-const jwt = require('jsonwebtoken');
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthMiddleware = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const AuthMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -8,13 +13,14 @@ const AuthMiddleware = (req, res, next) => {
     }
     try {
         const token = authHeader.split(' ')[1];
-        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        const payload = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
+        console.log(payload);
         req.currentUser = payload;
-        next();
     }
     catch (err) {
         res.status(401).send({ error: 'Not authenticated' });
         return;
     }
+    next();
 };
-module.exports = { AuthMiddleware };
+exports.AuthMiddleware = AuthMiddleware;

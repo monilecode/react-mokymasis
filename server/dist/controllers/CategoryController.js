@@ -8,19 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const { CategoryModel } = require("../models/CategoryModel");
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createCategory = exports.getCategories = void 0;
+const CategoryModel_1 = require("../models/CategoryModel");
 const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allCategories = yield CategoryModel.find();
+        const allCategories = yield CategoryModel_1.CategoryModel.find();
         res.json(allCategories);
+        return;
     }
     catch (error) {
-        res.status(500).json({ message: "Error retrieving categories" });
+        res.status(500).json({ message: 'Error retrieving categories' });
+        return;
     }
 });
+exports.getCategories = getCategories;
 const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const newCategory = new CategoryModel({
+        const newCategory = new CategoryModel_1.CategoryModel({
             category: req.body.category,
             icon: req.body.icon,
             alt: req.body.alt,
@@ -28,15 +33,14 @@ const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function*
         yield newCategory.save();
         res.json({
             success: true,
-            message: "Category added successfully",
+            message: 'Category added successfully',
             categoryId: newCategory._id,
         });
+        return;
     }
     catch (error) {
-        res.status(500).json({ message: "Error creating category" });
+        res.status(500).json({ message: 'Error creating category' });
+        return;
     }
 });
-module.exports = {
-    getCategories,
-    createCategory,
-};
+exports.createCategory = createCategory;

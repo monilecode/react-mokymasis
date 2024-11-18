@@ -4,7 +4,7 @@ import { Button } from "@components/abstracts/Button";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 
 type ServiceCardProps = {
-  id: number;
+  id: string;
   img: string;
   categoryTag: string;
   heading: string;
@@ -14,7 +14,7 @@ type ServiceCardProps = {
 };
 
 export const ServiceCard: React.FC<ServiceCardProps> = (serviceProps) => {
-  const [favourites, setFavourites] = useLocalStorage<number[]>(
+  const [favourites, setFavourites] = useLocalStorage<string[]>(
     "favourites",
     []
   );

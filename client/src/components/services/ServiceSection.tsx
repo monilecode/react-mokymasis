@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ServiceSection.module.scss";
 import { ServiceCard } from "./ServiceCard";
-import { serviceData, Service } from "@data/Data";
+import { getServices } from "../../api/ServicesApi";
+import { Service } from "../../types/ServiceType";
 
 type ServiceSectionProps = {
   selectedCategory: string;
@@ -12,12 +13,18 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
   selectedCategory,
   filterServices,
 }) => {
+  const [services, setServices] = useState<Service[]>([]);
+
+  useEffect(() => {
+    getServices().then(setServices);
+  }, []);
+
   const filteredServices = filterServices
-    ? serviceData.filter(
+    ? services.filter(
         (service) =>
           service.categoryTag.toLowerCase() === selectedCategory.toLowerCase()
       )
-    : serviceData;
+    : services;
 
   return (
     <section className={styles.serviceSection}>

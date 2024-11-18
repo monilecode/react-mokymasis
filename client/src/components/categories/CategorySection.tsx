@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CategorySection.module.scss";
 import { CategoryCard } from "./CategoryCard";
-import { categoryData } from "@data/Data";
 import { useParams } from "react-router-dom";
+import { Category } from "../../types/CategoryType";
+import { getCategories } from "../../api/CategoriesApi";
 
 type CategorySectionProps = {
   isVertical: boolean;
@@ -11,6 +12,12 @@ type CategorySectionProps = {
 export const CategorySection: React.FC<CategorySectionProps> = ({
   isVertical,
 }) => {
+  const [categories, setCategories] = React.useState<Category[]>([]);
+
+  React.useEffect(() => {
+    getCategories().then(setCategories);
+  }, []);
+
   const { category } = useParams<{ category?: string }>();
   const [activeCategory, setActiveCategory] = useState<string | null>(
     category || null
@@ -32,7 +39,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         isVertical ? styles.vertical : ""
       }`}
     >
-      {categoryData.map((item) => (
+      {categories.map((item) => (
         <CategoryCard
           key={item.id}
           category={item.category}

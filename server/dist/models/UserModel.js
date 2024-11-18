@@ -8,9 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const UserSchema = new mongoose.Schema({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserModel = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const UserSchema = new mongoose_1.default.Schema({
     name: {
         type: String,
         required: true,
@@ -42,13 +47,15 @@ UserSchema.set('toJSON', {
 UserSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         if (this.isModified('password')) {
-            this.password = yield bcrypt.hash(this.password, 10);
+            this.password = yield bcryptjs_1.default.hash(this.password, 10);
         }
         next();
     });
 });
 UserSchema.methods.isCorrectPassword = function (password) {
-    return bcrypt.compare(password, this.password);
+    return __awaiter(this, void 0, void 0, function* () {
+        return bcryptjs_1.default.compare(password, this.password);
+    });
 };
-const UserModel = mongoose.model('User', UserSchema);
-module.exports = { UserModel };
+const UserModel = mongoose_1.default.model('User', UserSchema);
+exports.UserModel = UserModel;

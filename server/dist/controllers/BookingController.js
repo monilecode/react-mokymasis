@@ -8,27 +8,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const mongoose = require('mongoose');
-const { BookingModel } = require('../models/BookingModel');
-const { ServiceModel } = require('../models/ServiceModel');
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteBooking = exports.getBookingsByEmail = exports.createBooking = exports.getBookings = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
+const BookingModel_1 = require("../models/BookingModel");
+const ServiceModel_1 = require("../models/ServiceModel");
 const getBookings = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const bookings = yield BookingModel.find().populate('services').exec();
+        const bookings = yield BookingModel_1.BookingModel.find().populate('services').exec();
         res.json(bookings);
+        return;
     }
     catch (error) {
         res.status(500).json({ message: 'Error retrieving bookings' });
+        return;
     }
 });
+exports.getBookings = getBookings;
 const createBooking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { userEmail, userName, services, status, date, time } = req.body;
-        const serviceIds = services.map((id) => new mongoose.Types.ObjectId(id));
-        const foundServices = yield ServiceModel.find({ _id: { $in: serviceIds } });
+        const serviceIds = services.map((id) => new mongoose_1.default.Types.ObjectId(id));
+        const foundServices = yield ServiceModel_1.ServiceModel.find({ _id: { $in: serviceIds } });
         if (foundServices.length !== serviceIds.length) {
-            return res.status(404).json({ message: 'One or more services not found' });
+            res.status(404).json({ message: 'One or more services not found' });
+            return;
         }
-        const newBooking = new BookingModel({
+        const newBooking = new BookingModel_1.BookingModel({
             services: serviceIds,
             userEmail,
             userName,
@@ -46,37 +55,42 @@ const createBooking = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             message: 'Booking created successfully',
             bookingId: newBooking._id,
         });
+        return;
     }
     catch (error) {
-        console.error('Error creating booking:', error);
-        res.status(500).json({ message: 'Error creating booking', error: error.message });
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        res.status(500).json({ message: 'Error creating booking', error: errorMessage });
+        return;
     }
 });
+exports.createBooking = createBooking;
 const getBookingsByEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { userEmail } = req.params;
-        const bookings = yield BookingModel.find({ userEmail }).populate('services').exec();
+        const bookings = yield BookingModel_1.BookingModel.find({ userEmail }).populate('services').exec();
         if (!bookings.length) {
-            return res.status(404).json({ message: 'No bookings found for this email' });
+            res.status(404).json({ message: 'No bookings found for this email' });
+            return;
         }
         res.json(bookings);
+        return;
     }
     catch (error) {
-        res.status(500).json({ message: 'Error retrieving bookings', error: error.message });
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        res.status(500).json({ message: 'Error retrieving bookings', error: errorMessage });
+        return;
     }
 });
+exports.getBookingsByEmail = getBookingsByEmail;
 const deleteBooking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield BookingModel.findByIdAndDelete(req.params.id);
+        yield BookingModel_1.BookingModel.findByIdAndDelete(req.params.id);
         res.json({ success: true, message: 'Booking deleted successfully' });
+        return;
     }
     catch (error) {
         res.status(500).json({ message: 'Error deleting booking' });
+        return;
     }
 });
-module.exports = {
-    getBookings,
-    createBooking,
-    getBookingsByEmail,
-    deleteBooking,
-};
+exports.deleteBooking = deleteBooking;

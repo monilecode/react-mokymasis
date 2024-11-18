@@ -1,6 +1,11 @@
 "use strict";
-const mongoose = require('mongoose');
-const ServiceSchema = new mongoose.Schema({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ServiceModel = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
+const ServiceSchema = new mongoose_1.default.Schema({
     heading: {
         type: String,
         required: true,
@@ -23,7 +28,7 @@ const ServiceSchema = new mongoose.Schema({
     },
     bookings: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose_1.default.Schema.Types.ObjectId,
             ref: 'Booking',
         },
     ],
@@ -35,5 +40,5 @@ ServiceSchema.set('toJSON', {
         delete returnedObject.__v;
     },
 });
-const ServiceModel = mongoose.model('Service', ServiceSchema);
-module.exports = { ServiceModel };
+const ServiceModel = mongoose_1.default.model('Service', ServiceSchema);
+exports.ServiceModel = ServiceModel;
