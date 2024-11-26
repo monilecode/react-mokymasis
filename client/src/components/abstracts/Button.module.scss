@@ -26,4 +26,9 @@
       background-color: #84cc16;
     }
   }
+  &[disabled] {
+    background-color: #c5c4c4 !important;
+    color: #374151;
+    cursor: not-allowed;
+  }
 }

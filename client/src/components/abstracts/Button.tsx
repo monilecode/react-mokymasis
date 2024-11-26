@@ -7,6 +7,7 @@ type ButtonProps = {
   text: string;
   onClick?: () => void;
   type: "button" | "submit" | "reset";
+  disabled?: boolean;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={`${styles.btn} ${styles[variant]}`}
       onClick={btnProps.onClick}
       type={btnProps.type}
+      disabled={btnProps.disabled}
     >
       {btnProps.text}
     </button>

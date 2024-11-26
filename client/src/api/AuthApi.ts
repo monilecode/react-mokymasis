@@ -31,11 +31,12 @@ type LoginResponse = {
   user: ApiUser;
 };
 
-const LoginErrorMessage = "Registration failed";
+const LoginErrorMessage = "Login failed";
 
 export const login = async (values: LoginValues) => {
   try {
     const { data } = await AxiosInstance.post<LoginResponse>("/login", values);
+    console.log("loginuos");
 
     return {
       token: data.token,

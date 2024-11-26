@@ -1,13 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@components/abstracts/Button";
-import { UserContext } from "@contexts/UserContext";
 import styles from "../abstracts/Button.module.scss";
 import stylesLogin from "./Login.module.scss";
+import { useUserStore } from "@hooks/useUserStore";
+import { Routes } from "@routing/Routes";
 
 export const Login: React.FC = () => {
-  const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
+  const user = useUserStore((state) => state.user);
+  const clearUser = useUserStore((state) => state.clearUser);
+
+  const logout = () => {
+    clearUser();
+    localStorage.removeItem("token");
+    navigate(Routes.LoginPage);
+  };
 
   return (
     <div>

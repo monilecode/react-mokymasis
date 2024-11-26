@@ -1,0 +1,12 @@
+.TextFieldBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  .fieldLabel {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .fieldError {
+    color: rgb(252, 61, 61);
+  }
+}
