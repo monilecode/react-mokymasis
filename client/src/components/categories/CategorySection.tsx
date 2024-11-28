@@ -4,6 +4,7 @@ import { CategoryCard } from "./CategoryCard";
 import { useParams } from "react-router-dom";
 import { Category } from "../../types/CategoryType";
 import { getCategories } from "../../api/CategoriesApi";
+import { useQuery } from "react-query";
 
 type CategorySectionProps = {
   isVertical: boolean;
@@ -12,11 +13,11 @@ type CategorySectionProps = {
 export const CategorySection: React.FC<CategorySectionProps> = ({
   isVertical,
 }) => {
-  const [categories, setCategories] = React.useState<Category[]>([]);
-
-  React.useEffect(() => {
-    getCategories().then(setCategories);
-  }, []);
+  const {
+    data: categories = [],
+    error,
+    isLoading,
+  } = useQuery<Category[]>("categories", getCategories);
 
   const { category } = useParams<{ category?: string }>();
   const [activeCategory, setActiveCategory] = useState<string | null>(
@@ -32,6 +33,14 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading categories</div>;
+  }
 
   return (
     <section

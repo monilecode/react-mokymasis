@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./ServiceSection.module.scss";
 import { ServiceCard } from "./ServiceCard";
 import { getServices } from "../../api/ServicesApi";
 import { Service } from "../../types/ServiceType";
+import { useQuery } from "react-query";
 
 type ServiceSectionProps = {
   selectedCategory: string;
@@ -13,11 +14,11 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
   selectedCategory,
   filterServices,
 }) => {
-  const [services, setServices] = useState<Service[]>([]);
-
-  useEffect(() => {
-    getServices().then(setServices);
-  }, []);
+  const {
+    data: services = [],
+    error,
+    isLoading,
+  } = useQuery<Service[]>("services", getServices);
 
   const filteredServices = filterServices
     ? services.filter(
@@ -25,6 +26,14 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
           service.categoryTag.toLowerCase() === selectedCategory.toLowerCase()
       )
     : services;
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading services</div>;
+  }
 
   return (
     <section className={styles.serviceSection}>
