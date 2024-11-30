@@ -4,10 +4,11 @@ import styles from "./Button.module.scss";
 type ButtonProps = {
   className?: string;
   variant?: "btnPrimary" | "btnSecondary" | "btnFull";
-  text: string;
+  text?: string;
   onClick?: () => void;
   type: "button" | "submit" | "reset";
   disabled?: boolean;
+  btnIcon?: React.ReactNode;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,9 @@ export const Button: React.FC<ButtonProps> = ({
       type={btnProps.type}
       disabled={btnProps.disabled}
     >
+      {btnProps.btnIcon && (
+        <span className={styles.icon}>{btnProps.btnIcon}</span>
+      )}
       {btnProps.text}
     </button>
   );

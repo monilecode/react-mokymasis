@@ -1,0 +1,97 @@
+.serviceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2.5rem 0 6rem 0;
+}
+
+.leftServiceBlock {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  .serviceImage {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .serviceInfoBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    .category {
+      display: inline-block;
+      font-weight: 600;
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      padding: 0.8rem 1rem;
+      border-radius: 1.5rem;
+      color: $primary-color;
+      background-color: $primary-light-color;
+    }
+    .name {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    .serviceAddressEmailBlock {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      .serviceAddressBlock,
+      .serviceEmailBlock {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: $plain-text-grey;
+        font-size: 1.3rem;
+        .addressIcon,
+        .emailIcon {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
+
+.rightServiceBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2rem;
+  .serviceNameTimeBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.8rem;
+  }
+  .serviceNameBlock {
+    display: flex;
+    color: $primary-color;
+    font-size: 1.3rem;
+    align-items: center;
+    gap: 0.6rem;
+    .nameIcon {
+      font-size: 1.8rem;
+    }
+  }
+  .serviceTimeBlock {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: $plain-text-grey;
+    font-size: 1.3rem;
+    .timeIcon {
+      font-size: 1.8rem;
+    }
+  }
+  .uploadingBtn {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    .uploadIcon {
+      font-size: 1.5rem;
+    }
+  }
+}

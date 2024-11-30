@@ -8,6 +8,7 @@ import { LoginPage } from "@pages/LoginPage";
 import { SearchCategoryPage } from "@pages/SearchCategoryPage";
 import { RegisterPage } from "@pages/RegisterPage";
 import { Routes } from "@routing/Routes";
+import { ServicePage } from "@pages/ServicePage";
 
 const Router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const Router = createBrowserRouter([
       { path: Routes.SearchCategoryPage, element: <SearchCategoryPage /> },
       { path: Routes.LoginPage, element: <LoginPage /> },
       { path: Routes.RegisterPage, element: <RegisterPage /> },
+      { path: Routes.ServicePage, element: <ServicePage /> },
     ],
   },
 ]);

@@ -1,0 +1,57 @@
+.wrapper {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font-size: 1.3rem;
+}
+
+.text {
+  font-size: 1rem;
+  color: rgb(109, 108, 108);
+  padding: 1rem 0;
+}
+
+.selectDate,
+.selectTime {
+  font-weight: bold;
+  color: #6f6f6f;
+}
+
+.selectTime {
+  padding-bottom: 2rem;
+}
+
+.dateTimesContainer {
+  .timesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .timeButton {
+      font-size: 1rem;
+      color: #6f6f6f;
+      border: 1px solid #6f6f6f;
+      width: 100px;
+      padding: 0.6rem;
+      cursor: pointer;
+      border-radius: 1rem;
+      background-color: inherit;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .active {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}
+
+.bookButton {
+  width: 250px;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}

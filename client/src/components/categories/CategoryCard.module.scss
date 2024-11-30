@@ -12,11 +12,11 @@
     box-shadow 0.3s ease;
   &:hover {
     transform: translate(0, -0.5rem);
-    background-color: #e0f2fe;
+    background-color: $blue-light-color;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
   &.active {
-    background-color: #e0f2fe;
+    background-color: $blue-light-color;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
   h2 {

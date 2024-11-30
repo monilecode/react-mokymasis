@@ -1,33 +1,27 @@
-export type ApiService = {
-  _id: string;
+export type Service = {
+  id: string;
   heading: string;
-  img: string;
+  images: { url: string }[];
   name: string;
+  email: string;
   address: string;
   categoryTag: string;
+  description: string;
   createdAt: Date;
   updatedAt: Date;
 };
 
-export type Service = {
-  id: string;
-  heading: string;
-  img: string;
-  name: string;
-  address: string;
-  categoryTag: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
-export const mapService = (apiService: ApiService): Service => {
+export const mapService = (service: Service): Service => {
   return {
-    id: apiService._id,
-    heading: apiService.heading,
-    img: apiService.img,
-    name: apiService.name,
-    address: apiService.address,
-    categoryTag: apiService.categoryTag,
-    createdAt: new Date(apiService.createdAt),
-    updatedAt: new Date(apiService.updatedAt),
+    id: service.id,
+    heading: service.heading,
+    images: service.images,
+    name: service.name,
+    email: service.email,
+    address: service.address,
+    categoryTag: service.categoryTag,
+    description: service.description,
+    createdAt: new Date(service.createdAt),
+    updatedAt: new Date(service.updatedAt),
   };
 };

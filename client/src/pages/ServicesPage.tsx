@@ -9,7 +9,7 @@ type Params = {
 };
 
 export const ServicesPage: React.FC = () => {
-  const { category } = useParams<Params>();
+  const { category = "" } = useParams<Params>();
 
   return (
     <section

@@ -4,14 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #0aa4d4, #04658b);
+  background: $heroBackground;
   h1 {
     color: #fff;
     font-size: 3.5rem;
     line-height: 4.5rem;
     text-align: center;
     span {
-      color: #a3e635;
+      color: $primary-color;
     }
   }
   h3 {

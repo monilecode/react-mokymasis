@@ -5,4 +5,5 @@ export const Routes = {
   SearchCategoryPage: "/search/:category",
   LoginPage: "/login",
   RegisterPage: "/register",
+  ServicePage: "/services/:id",
 };

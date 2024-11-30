@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./ServiceCard.module.scss";
 import { Button } from "@components/abstracts/Button";
 import { useLocalStorage } from "@hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
 
 type ServiceCardProps = {
   id: string;
-  img: string;
+  images: { url: string }[];
   categoryTag: string;
   heading: string;
   name: string;
@@ -13,7 +14,15 @@ type ServiceCardProps = {
   className?: string;
 };
 
-export const ServiceCard: React.FC<ServiceCardProps> = (serviceProps) => {
+export const ServiceCard: React.FC<ServiceCardProps> = (
+  serviceProps: ServiceCardProps
+) => {
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    navigate(`/services/${serviceProps.id}`);
+  };
+
   const [favourites, setFavourites] = useLocalStorage<string[]>(
     "favourites",
     []
@@ -63,15 +72,27 @@ export const ServiceCard: React.FC<ServiceCardProps> = (serviceProps) => {
             </g>
           </svg>
         </span>
-        <img className={styles.img} src={serviceProps.img} />
+        {serviceProps.images && serviceProps.images.length > 0 ? (
+          <img
+            className={styles.img}
+            src={serviceProps.images[0].url}
+            alt={serviceProps.name}
+          />
+        ) : (
+          <div className={styles.noImage}>No Image Available</div>
+        )}
       </div>
-
       <div className={styles.textBox}>
         <p className={styles.categoryTag}>{serviceProps.categoryTag}</p>
         <h2 className={styles.h2}>{serviceProps.heading}</h2>
         <p className={styles.name}>{serviceProps.name}</p>
         <p className={styles.address}>{serviceProps.address}</p>
-        <Button className={styles.btn} text="Book now" />
+        <Button
+          className={styles.btn}
+          text="Book now"
+          type={"button"}
+          onClick={handleBookNow}
+        />
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ export const useLocalStorage = <T,>(
       const item = localStorage.getItem(key);
       return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
-      console.log(error);
       return initialValue;
     }
   });
@@ -20,9 +19,7 @@ export const useLocalStorage = <T,>(
         value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return [storedValue, setValue];
