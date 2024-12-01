@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./AuthPage.module.scss";
 import { Button } from "@components/abstracts/Button";
-import { Routes } from "@routing/Routes";
-import { login as loginApi } from "@api/AuthApi";
+import { Routes } from "../routing/Routes";
+import { login as loginApi } from "../api/AuthApi";
 import { useUserStore } from "@hooks/useUserStore";
 import { User } from "../types/UserType";
 import { Formik, FormikConfig } from "formik";
@@ -38,7 +38,6 @@ export const LoginPage: React.FC = () => {
   >(null);
 
   const handleLogin: LoginFormFormik["onSubmit"] = async (values) => {
-    event.preventDefault();
     try {
       const { token, user }: { token: string; user: User } = await loginApi({
         email: values.email,

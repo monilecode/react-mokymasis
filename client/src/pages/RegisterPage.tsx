@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./AuthPage.module.scss";
 import { Button } from "@components/abstracts/Button";
 import { useNavigate } from "react-router-dom";
-import { register } from "@api/AuthApi";
-import { Routes } from "@routing/Routes";
+import { register } from "../api/AuthApi";
+import { Routes } from "../routing/Routes";
 import * as yup from "yup";
 import { Formik, FormikConfig } from "formik";
 import { RegistrationValues } from "../types/AuthType";
@@ -61,7 +61,7 @@ export const RegisterPage: React.FC = () => {
   return (
     <div className={styles.authContainer}>
       <Formik
-        initialValues={{ name: "", age: "", email: "", password: "" }}
+        initialValues={{ name: "", age: 0, email: "", password: "" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
         validateOnChange={false}

@@ -17,7 +17,6 @@ export const CategoryCard: React.FC<CategoryCardProps> = (categoryProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/search/${category}`);
     navigate(generatePath(Routes.SearchCategoryPage, { category }));
     categoryProps.onClick();
   };

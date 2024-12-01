@@ -8,7 +8,7 @@ export const Search = () => {
       <button className={styles.btn}>
         <img
           className={styles.img}
-          src="./src/components/hero/images/search.svg"
+          src="/images/common/search.svg"
           alt="search"
         />
       </button>

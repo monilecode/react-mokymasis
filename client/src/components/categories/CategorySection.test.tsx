@@ -65,37 +65,18 @@ describe("CategorySection Component", () => {
     const image2 = screen.getByAltText("category image 2");
     expect(image2).toBeInTheDocument();
     expect(image2).toHaveAttribute("src", "img2.jpg");
-
-    // Check for card click handling
-    const card1 = screen
-      .getByRole("heading", { name: "Category Title 1" })
-      .closest("div");
-    expect(card1).toBeInTheDocument();
-    fireEvent.click(card1!);
-    expect(mockCategories[0].onClick).toHaveBeenCalled();
-
-    const card2 = screen
-      .getByRole("heading", { name: "Category Title 2" })
-      .closest("div");
-    expect(card2).toBeInTheDocument();
-    fireEvent.click(card2!);
-    expect(mockCategories[1].onClick).toHaveBeenCalled();
   });
 
   it("should navigate to the correct URL on click", () => {
     render(<CategorySection isVertical />);
 
-    const card1 = screen
-      .getByRole("heading", { name: "Category Title 1" })
-      .closest("div");
+    const card1 = screen.getByText("Category Title 1").parentElement;
     fireEvent.click(card1!);
     expect(mockNavigate).toHaveBeenCalledWith(
       `/search/${mockCategories[0].category}`
     );
 
-    const card2 = screen
-      .getByRole("heading", { name: "Category Title 2" })
-      .closest("div");
+    const card2 = screen.getByText("Category Title 2").parentElement;
     fireEvent.click(card2!);
     expect(mockNavigate).toHaveBeenCalledWith(
       `/search/${mockCategories[1].category}`

@@ -4,7 +4,7 @@ import { Button } from "@components/abstracts/Button";
 import styles from "../abstracts/Button.module.scss";
 import stylesLogin from "./Login.module.scss";
 import { useUserStore } from "@hooks/useUserStore";
-import { Routes } from "@routing/Routes";
+import { Routes } from "../../routing/Routes";
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();

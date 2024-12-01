@@ -10,10 +10,7 @@ const ServiceSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
-    img: {
-        type: String,
-        required: true,
-    },
+    images: [{ url: { type: String, required: true } }],
     name: {
         type: String,
         required: true,
@@ -23,6 +20,10 @@ const ServiceSchema = new mongoose_1.default.Schema({
         required: true,
     },
     categoryTag: {
+        type: String,
+        required: true,
+    },
+    description: {
         type: String,
         required: true,
     },

@@ -1,14 +1,14 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BaseLayout } from "@components/layout/BaseLayout";
-import { HomePage } from "@pages/HomePage";
-import { ServicesPage } from "@pages/ServicesPage";
-import { AboutPage } from "@pages/AboutPage";
-import { LoginPage } from "@pages/LoginPage";
-import { SearchCategoryPage } from "@pages/SearchCategoryPage";
-import { RegisterPage } from "@pages/RegisterPage";
-import { Routes } from "@routing/Routes";
-import { ServicePage } from "@pages/ServicePage";
+import { HomePage } from "../pages/HomePage";
+import { ServicesPage } from "../pages/ServicesPage";
+import { AboutPage } from "../pages/AboutPage";
+import { LoginPage } from "../pages/LoginPage";
+import { SearchCategoryPage } from "../pages/SearchCategoryPage";
+import { RegisterPage } from "../pages/RegisterPage";
+import { Routes } from "../routing/Routes";
+import { ServicePage } from "../pages/ServicePage";
 
 const Router = createBrowserRouter([
   {

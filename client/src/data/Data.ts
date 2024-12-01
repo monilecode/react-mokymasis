@@ -11,7 +11,7 @@ export const categoryData = [
   {
     id: 1,
     category: "cleaning",
-    icon: "/src/components/categories/images/cleaning.png",
+    icon: "/categories/cleaning.png",
     alt: "cleaning",
   },
   {

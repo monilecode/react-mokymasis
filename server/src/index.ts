@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { connectToDb, PORT } from './db';
-
 import { CategoryRoutes } from './routes/CategoryRoutes';
 import { ServiceRoutes } from './routes/ServiceRoutes';
 import { BookingRoutes } from './routes/BookingRoutes';
@@ -27,3 +26,5 @@ connectToDb()
     app.listen(PORT, () => console.log(`Server running on port ${process.env.PROTOCOL}://${process.env.HOST}:${PORT}`)),
   )
   .catch((err) => console.error('Failed to connect to the database', err));
+
+module.exports = app; // Ensure the server is exported

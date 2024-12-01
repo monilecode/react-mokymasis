@@ -8,7 +8,7 @@ export const AboutPage: React.FC = () => {
       <div className={styles.aboutBlock}>
         <img
           className={styles.aboutImg}
-          src="./src/pages/images/about.jpg"
+          src="/images/pages/about.jpg"
           alt="home-service"
         />
         <p className={styles.aboutDescription}>
