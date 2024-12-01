@@ -14,7 +14,7 @@ const app = express();
 
 // Configure CORS to allow requests from your client domain
 const corsOptions = {
-  origin: 'https://client-rho-ten-24.vercel.app', // Remove trailing slash
+  origin: 'https://client-rho-ten-24.vercel.app',
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
