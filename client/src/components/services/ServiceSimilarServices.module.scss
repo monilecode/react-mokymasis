@@ -1,0 +1,36 @@
+.serviceSimilarServices {
+  .title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2.2rem;
+  }
+  .similarServiceContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    .similarImage {
+      display: inline-block;
+      width: 6.5rem;
+      height: 8rem;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+    .serviceSimilarBlock {
+      display: flex;
+      gap: 0.8rem;
+      .serviceSimilarInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        padding-top: 0.6rem;
+        font-size: 1.1rem;
+        .contactPerson {
+          color: $primary-color;
+        }
+        .address {
+          color: $plain-text-grey;
+        }
+      }
+    }
+  }
+}

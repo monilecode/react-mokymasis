@@ -1,0 +1,30 @@
+.serviceContainer {
+  width: 1400px;
+  margin: 0 auto;
+  .serviceBody {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    .serviceBodyLeftCol {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .serviceBodyRightCol {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .bookingBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      .bookingIcon {
+        font-size: 1.5rem;
+        fill: #fff;
+      }
+    }
+  }
+}

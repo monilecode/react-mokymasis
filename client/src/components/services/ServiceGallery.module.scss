@@ -1,0 +1,19 @@
+.serviceGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  .galleryTitle {
+    font-size: 2rem;
+  }
+  .galleryImagesBlock {
+    display: flex;
+    gap: 1.5rem;
+    .galleryImage {
+      display: inline-block;
+      width: 14rem;
+      height: 9rem;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+  }
+}

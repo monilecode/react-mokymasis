@@ -1,0 +1,51 @@
+@import "../../theme/variables.scss";
+
+.categorySection {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: fit-content;
+  margin: 0 auto;
+
+  // REPONSIVE
+  @media (max-width: 1020px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.vertical {
+    grid-template-columns: 1fr;
+    margin: unset;
+    place-content: start;
+    div {
+      flex-direction: row;
+      img {
+        width: 2rem;
+      }
+      &:hover {
+        transform: none;
+      }
+    }
+
+    // REPONSIVE
+    @media (max-width: 1020px) {
+      display: flex;
+      flex-wrap: wrap;
+      div {
+        flex-direction: column;
+        padding: 0.5rem 0.7rem;
+        min-width: 5rem;
+      }
+      div h2 {
+        font-size: 1rem;
+      }
+      div img {
+        display: none;
+      }
+    }
+  }
+}

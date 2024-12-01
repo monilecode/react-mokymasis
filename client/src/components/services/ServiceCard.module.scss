@@ -1,0 +1,65 @@
+@import "../../theme/variables.scss";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.15);
+
+    .imgContainer img {
+      filter: brightness(0.95);
+    }
+  }
+
+  .imgContainer {
+    position: relative;
+    .favouriteIcon {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      background-color: #fff;
+      border-radius: 50%;
+      z-index: 1;
+      &:hover {
+        transform: scale(1.1);
+        transition: transform 0.2s ease;
+      }
+      svg {
+        width: 2rem;
+        height: auto;
+        padding: 6px;
+      }
+      .favouriteEmpty,
+      .favouriteSelected {
+        display: block;
+      }
+    }
+  }
+  img {
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .textBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    .categoryTag {
+      background-color: $blue-light-color;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}

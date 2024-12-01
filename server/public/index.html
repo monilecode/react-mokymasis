@@ -1,0 +1,43 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>API Documentation</title>
+<link rel="stylesheet" href="./main.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>API Documentation</h1>
+    <ul>
+      <li><b>GET /categories</b> - Retrieves all categories.</li>
+      <li><b>POST /categories</b> - Creates a new category.</li>
+      <br />
+      <li><b>GET /services</b> - Retrieves all companies.</li>
+      <li>
+        <b>GET /services/category/:category</b> - Retrieves all companies
+        belonging to the specified category.
+      </li>
+      <li><b>GET /services/:id</b> - Retrieves a specific company by ID.</li>
+      <li>
+        <b>GET /services/:serviceId/bookings/date/:date</b> - Retrieves all
+        bookings for a specific company on the specified date.
+      </li>
+      <li>
+        <b>POST /services</b> - Adds a new company to the list. Ensure that
+        all required fields are provided.
+      </li>
+      <li>
+        <b>PUT /services/:id</b> - Updates an existing company. Check if the
+        company with the specified ID exists before updating.
+      </li>
+      <br />
+      <li>
+        <b>GET /bookings/user/:email</b> - Retrieves all bookings associated
+        with a specific user's email address.
+      </li>
+      <li>
+        <b>POST /bookings</b> - Creates a new booking. Ensure that all fields
+        are provided.
+      </li>
+      <li><b>DELETE /bookings/:id</b> - Deletes a specific booking.</li>
+    </ul>
+  </div>
+</body>
