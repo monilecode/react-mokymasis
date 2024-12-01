@@ -1,0 +1,21 @@
+.aboutBlock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  .aboutImg {
+    display: inline-block;
+    width: 600px;
+    min-width: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+  }
+  .aboutDescription {
+    max-width: 50rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: $plain-text-grey;
+  }
+}

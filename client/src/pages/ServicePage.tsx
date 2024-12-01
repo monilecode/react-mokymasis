@@ -1,11 +1,11 @@
 import { ServiceHeader } from "../components/services/ServiceHeader";
-import { useService } from "@/hooks/useService";
+import { useService } from "../hooks/useService";
 import { useParams } from "react-router-dom";
 import styles from "./ServicePage.module.scss";
 import { ServiceDescription } from "../components/services/ServiceDescription";
 import { ServiceGallery } from "../components/services/ServiceGallery";
 import { ServiceSimilarServices } from "../components/services/ServiceSimilarServices";
-import { Button } from "@/components/abstracts/Button";
+import { Button } from "../components/abstracts/Button";
 import { PiNotePencil } from "react-icons/pi";
 import { useState } from "react";
 import { BookingDateTime } from "@components/bookings/BookingDateTime";

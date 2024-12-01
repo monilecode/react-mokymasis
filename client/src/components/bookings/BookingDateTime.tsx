@@ -89,6 +89,7 @@ export const BookingDateTime = () => {
           className={styles.bookButton}
           type="button"
           text="Book"
+          variant="btnFull"
         />
       </div>
     </div>

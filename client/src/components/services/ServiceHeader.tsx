@@ -47,7 +47,6 @@ export const ServiceHeader = ({ service }: ServiceHeaderProps) => {
         <Button
           className={styles.uploadingBtn}
           type="button"
-          variant="btnPrimary"
           btnIcon={<TbUpload className={styles.uploadIcon} />}
         />
         <div className={styles.serviceNameTimeBlock}>

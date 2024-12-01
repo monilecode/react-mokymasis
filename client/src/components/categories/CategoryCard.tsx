@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./CategoryCard.module.scss";
 import { generatePath, useNavigate } from "react-router-dom";
-import { Routes } from "@routing/Routes";
+import { Routes } from "../../routing/Routes";
 
-type CategoryCardProps = {
+export type CategoryCardProps = {
   category: string;
   icon: string;
   alt: string;

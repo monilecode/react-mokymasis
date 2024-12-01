@@ -14,6 +14,7 @@ export type Category = {
   alt: string;
   createdAt: Date;
   updatedAt: Date;
+  isActive: boolean;
 };
 
 export const mapCategory = (apiCategory: ApiCategory): Category => {
@@ -22,6 +23,7 @@ export const mapCategory = (apiCategory: ApiCategory): Category => {
     category: apiCategory.category,
     icon: apiCategory.icon,
     alt: apiCategory.alt,
+    isActive: false,
     createdAt: new Date(apiCategory.createdAt),
     updatedAt: new Date(apiCategory.updatedAt),
   };

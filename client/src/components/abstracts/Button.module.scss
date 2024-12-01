@@ -1,8 +1,9 @@
+@import "../../theme/variables.scss";
+
 .btn {
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: "Roboto", sans-serif;
   &.btnPrimary {
     background-color: $primary-color;
     color: #fff;

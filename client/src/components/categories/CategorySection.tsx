@@ -6,7 +6,7 @@ import { Category } from "../../types/CategoryType";
 import { getCategories } from "../../api/CategoriesApi";
 import { useQuery } from "react-query";
 
-type CategorySectionProps = {
+export type CategorySectionProps = {
   isVertical: boolean;
 };
 

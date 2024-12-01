@@ -16,7 +16,7 @@ export const ServiceSimilarServices = ({
     <div className={styles.serviceSimilarServices}>
       <h2 className={styles.title}>Similar Services</h2>
       <div className={styles.similarServiceContainer}>
-        {service.images && service.images.length > 0 ? ( // Highlighted check for images array
+        {service.images && service.images.length > 0 ? (
           <>
             <div className={styles.serviceSimilarBlock}>
               <img

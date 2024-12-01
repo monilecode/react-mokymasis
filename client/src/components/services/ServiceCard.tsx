@@ -4,7 +4,7 @@ import { Button } from "@components/abstracts/Button";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 
-type ServiceCardProps = {
+export type ServiceCardProps = {
   id: string;
   images: { url: string }[];
   categoryTag: string;
