@@ -17,7 +17,7 @@ const BookingRoutes_1 = require('./routes/BookingRoutes');
 const AuthRoutes_1 = require('./routes/AuthRoutes');
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-// Configure CORS to allow requests from your client domain
+
 const corsOptions = {
   origin: 'https://client-rho-ten-24.vercel.app',
   optionsSuccessStatus: 200,

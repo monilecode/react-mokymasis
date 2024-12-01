@@ -12,7 +12,6 @@ import { AuthRoutes } from './routes/AuthRoutes';
 dotenv.config();
 const app = express();
 
-// Configure CORS to allow requests from your client domain
 const corsOptions = {
   origin: 'https://client-rho-ten-24.vercel.app',
   optionsSuccessStatus: 200,
@@ -33,4 +32,4 @@ connectToDb()
   )
   .catch((err) => console.error('Failed to connect to the database', err));
 
-module.exports = app; // Ensure the server is exported
+module.exports = app;
