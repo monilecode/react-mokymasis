@@ -16,11 +16,11 @@ const AuthRoutes_1 = require("./routes/AuthRoutes");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // Configure CORS to allow requests from your client domain
-// const corsOptions = {
-//   origin: 'https://client-rho-ten-24.vercel.app', // Remove trailing slash
-//   optionsSuccessStatus: 200,
-// };
-app.use((0, cors_1.default)());
+const corsOptions = {
+    origin: 'https://client-rho-ten-24.vercel.app', // Remove trailing slash
+    optionsSuccessStatus: 200,
+};
+app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
 app.use(express_1.default.json());
 app.use((0, morgan_1.default)('dev'));

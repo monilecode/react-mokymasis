@@ -12,7 +12,13 @@ import { AuthRoutes } from './routes/AuthRoutes';
 dotenv.config();
 const app = express();
 
-app.use(cors());
+// Configure CORS to allow requests from your client domain
+const corsOptions = {
+  origin: 'https://client-rho-ten-24.vercel.app', // Remove trailing slash
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(morgan('dev'));
